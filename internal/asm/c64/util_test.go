@@ -6,6 +6,7 @@ package c64
 
 import (
 	"math/cmplx"
+	"math/rand"
 	"testing"
 )
 
@@ -107,4 +108,13 @@ func newIncToSet(inc ...int) []incToSet {
 		}
 	}
 	return is
+}
+
+// randSlice creates a random slice of complex64 values.
+func randSlice(ln int) []complex64 {
+	sl := make([]complex64, ln)
+	for i := range sl {
+		sl[i] = complex(rand.Float32(), rand.Float32())
+	}
+	return sl
 }

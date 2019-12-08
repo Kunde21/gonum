@@ -4,7 +4,9 @@
 
 package c64
 
-import "testing"
+import (
+	"testing"
+)
 
 var tests = []struct {
 	incX, incY, incDst int
@@ -13,73 +15,95 @@ var tests = []struct {
 	dst, x, y          []complex64
 	ex                 []complex64
 }{
-	{incX: 2, incY: 2, incDst: 3, ix: 0, iy: 0, idst: 0,
+	{
+		incX: 2, incY: 2, incDst: 3, ix: 0, iy: 0, idst: 0,
 		a:   1 + 1i,
 		dst: []complex64{5},
 		x:   []complex64{1},
 		y:   []complex64{1i},
-		ex:  []complex64{1 + 2i}},
-	{incX: 2, incY: 2, incDst: 3, ix: 0, iy: 0, idst: 0,
+		ex:  []complex64{1 + 2i},
+	},
+	{
+		incX: 2, incY: 2, incDst: 3, ix: 0, iy: 0, idst: 0,
 		a:   1 + 2i,
 		dst: []complex64{0, 0, 0},
 		x:   []complex64{0, 0, 0},
 		y:   []complex64{1, 1, 1},
-		ex:  []complex64{1, 1, 1}},
-	{incX: 2, incY: 2, incDst: 3, ix: 0, iy: 0, idst: 0,
+		ex:  []complex64{1, 1, 1},
+	},
+	{
+		incX: 2, incY: 2, incDst: 3, ix: 0, iy: 0, idst: 0,
 		a:   1 + 2i,
 		dst: []complex64{0, 0, 0},
 		x:   []complex64{0, 0},
 		y:   []complex64{1, 1, 1},
-		ex:  []complex64{1, 1}},
-	{incX: 2, incY: 2, incDst: 3, ix: 0, iy: 0, idst: 0,
+		ex:  []complex64{1, 1},
+	},
+	{
+		incX: 2, incY: 2, incDst: 3, ix: 0, iy: 0, idst: 0,
 		a:   1 + 2i,
 		dst: []complex64{1i, 1i, 1i},
 		x:   []complex64{1i, 1i, 1i},
 		y:   []complex64{1, 2, 1},
-		ex:  []complex64{-1 + 1i, 1i, -1 + 1i}},
-	{incX: 2, incY: 2, incDst: 3, ix: 0, iy: 0, idst: 0,
+		ex:  []complex64{-1 + 1i, 1i, -1 + 1i},
+	},
+	{
+		incX: 2, incY: 2, incDst: 3, ix: 0, iy: 0, idst: 0,
 		a:   -1i,
 		dst: []complex64{1i, 1i, 1i},
 		x:   []complex64{1i, 1i, 1i},
 		y:   []complex64{1, 2, 1},
-		ex:  []complex64{2, 3, 2}},
-	{incX: 2, incY: 2, incDst: 3, ix: 0, iy: 0, idst: 0,
+		ex:  []complex64{2, 3, 2},
+	},
+	{
+		incX: 2, incY: 2, incDst: 3, ix: 0, iy: 0, idst: 0,
 		a:   -1i,
 		dst: []complex64{1i, 1i, 1i},
 		x:   []complex64{1i, 1i, 1i, 1i, 1i}[1:4],
 		y:   []complex64{1, 1, 2, 1, 1}[1:4],
-		ex:  []complex64{2, 3, 2}},
-	{incX: 2, incY: 4, incDst: 3, ix: 0, iy: 0, idst: 0,
+		ex:  []complex64{2, 3, 2},
+	},
+	{
+		incX: 2, incY: 4, incDst: 3, ix: 0, iy: 0, idst: 0,
 		a:   -2,
 		dst: []complex64{1i, 1i, 1i, 1i, 1i},
 		x:   []complex64{2 + 1i, 2 + 1i, 2 + 1i, 2 + 1i, 2 + 1i},
 		y:   []complex64{1, 1, 2, 1, 1},
-		ex:  []complex64{-3 - 2i, -3 - 2i, -2 - 2i, -3 - 2i, -3 - 2i}},
+		ex:  []complex64{-3 - 2i, -3 - 2i, -2 - 2i, -3 - 2i, -3 - 2i},
+	},
 	// Run big test twice, once aligned once unaligned.
-	{incX: 2, incY: 2, incDst: 3, ix: 0, iy: 0, idst: 0,
+	{
+		incX: 2, incY: 2, incDst: 3, ix: 0, iy: 0, idst: 0,
 		a:   1 - 1i,
 		dst: make([]complex64, 10),
 		x:   []complex64{1i, 1i, 1i, 1i, 1i, 1i, 1i, 1i, 1i, 1i},
 		y:   []complex64{1, 1, 2, 1, 1, 1, 1, 2, 1, 1},
-		ex:  []complex64{2 + 1i, 2 + 1i, 3 + 1i, 2 + 1i, 2 + 1i, 2 + 1i, 2 + 1i, 3 + 1i, 2 + 1i, 2 + 1i}},
-	{incX: 2, incY: 2, incDst: 3, ix: 0, iy: 0, idst: 0,
+		ex:  []complex64{2 + 1i, 2 + 1i, 3 + 1i, 2 + 1i, 2 + 1i, 2 + 1i, 2 + 1i, 3 + 1i, 2 + 1i, 2 + 1i},
+	},
+	{
+		incX: 2, incY: 2, incDst: 3, ix: 0, iy: 0, idst: 0,
 		a:   1 - 1i,
 		dst: make([]complex64, 10),
 		x:   []complex64{1i, 1i, 1i, 1i, 1i, 1i, 1i, 1i, 1i, 1i},
 		y:   []complex64{1, 1, 2, 1, 1, 1, 1, 2, 1, 1},
-		ex:  []complex64{2 + 1i, 2 + 1i, 3 + 1i, 2 + 1i, 2 + 1i, 2 + 1i, 2 + 1i, 3 + 1i, 2 + 1i, 2 + 1i}},
-	{incX: -2, incY: -2, incDst: -3, ix: 18, iy: 18, idst: 27,
+		ex:  []complex64{2 + 1i, 2 + 1i, 3 + 1i, 2 + 1i, 2 + 1i, 2 + 1i, 2 + 1i, 3 + 1i, 2 + 1i, 2 + 1i},
+	},
+	{
+		incX: -2, incY: -2, incDst: -3, ix: 18, iy: 18, idst: 27,
 		a:   1 - 1i,
 		dst: make([]complex64, 10),
 		x:   []complex64{1i, 1i, 1i, 1i, 1i, 1i, 1i, 1i, 1i, 1i},
 		y:   []complex64{1, 1, 2, 1, 1, 1, 1, 2, 1, 1},
-		ex:  []complex64{2 + 1i, 2 + 1i, 3 + 1i, 2 + 1i, 2 + 1i, 2 + 1i, 2 + 1i, 3 + 1i, 2 + 1i, 2 + 1i}},
-	{incX: -2, incY: 2, incDst: -3, ix: 18, iy: 0, idst: 27,
+		ex:  []complex64{2 + 1i, 2 + 1i, 3 + 1i, 2 + 1i, 2 + 1i, 2 + 1i, 2 + 1i, 3 + 1i, 2 + 1i, 2 + 1i},
+	},
+	{
+		incX: -2, incY: 2, incDst: -3, ix: 18, iy: 0, idst: 27,
 		a:   1 - 1i,
 		dst: make([]complex64, 10),
 		x:   []complex64{1i, 1i, 1i, 1i, 1i, 1i, 1i, 1i, 1i, 1i},
 		y:   []complex64{1, 1, 2, 1, 1, 1, 1, 2, 1, 1},
-		ex:  []complex64{2 + 1i, 2 + 1i, 3 + 1i, 2 + 1i, 2 + 1i, 2 + 1i, 2 + 1i, 3 + 1i, 2 + 1i, 2 + 1i}},
+		ex:  []complex64{2 + 1i, 2 + 1i, 3 + 1i, 2 + 1i, 2 + 1i, 2 + 1i, 2 + 1i, 3 + 1i, 2 + 1i, 2 + 1i},
+	},
 }
 
 func TestAxpyUnitary(t *testing.T) {

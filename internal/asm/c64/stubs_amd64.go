@@ -66,3 +66,9 @@ func DotuUnitary(x, y []complex64) (sum complex64)
 //  }
 //  return sum
 func DotuInc(x, y []complex64, n, incX, incY, ix, iy uintptr) (sum complex64)
+
+// ScalUnitary is
+//  for i := range x {
+//  	x[i] *= alpha
+//  }
+func ScalUnitary(alpha complex64, x []complex64)

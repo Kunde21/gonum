@@ -4,16 +4,6 @@
 
 package c64
 
-// ScalUnitary is
-//  for i := range x {
-//  	x[i] *= alpha
-//  }
-func ScalUnitary(alpha complex64, x []complex64) {
-	for i := range x {
-		x[i] *= alpha
-	}
-}
-
 // ScalUnitaryTo is
 //  for i, v := range x {
 //  	dst[i] = alpha * v
